@@ -1,4 +1,4 @@
-""" Ask the user for a number and print the swuare of that number """
+""" Ask the user for a number and print the square of that number """
 
 # Don't do this:
 # print(int(input("What's X? ")) + int(input("What's Y? ")))
