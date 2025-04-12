@@ -1,15 +1,19 @@
 """ Ask user for their name and greet them """
 
-
 name = None
 
+# ANSI escape codes for changing text color
+def set_color(color_code):
+    print(f"\033[{color_code}m", end="")
 
-# Keep asking for a name until the user enters one
-while not name:
-    name = input("What is your name? ")
-    if not name:
-        print("You didn't enter a name!")
+# Reset to default color
+def reset_color():
+    print("\033[0m", end="")
 
+# say_hello function that takes a name as input and prints a greeting message
+def say_hello(to):
+    print(f"Hello, {to} 😊")
+    reset_color()
 
 # Clean the name by removing any digits or special characters
 def parse_name(name: str) -> str:
@@ -26,12 +30,27 @@ def parse_name(name: str) -> str:
     # Convert the cleaned name to title case (capitalize the first letter of each word),
     # remove any leading or trailing whitespace, and return the result.
 
+# Change font color to blue
+set_color(34)
+print("   _______  ")
+print("  /       \\ ")
+print(" /  ^   ^  \\")
+print("|           |")
+print("|   \___/   |")
+print(" \\_________/ ")
+print("Hello world!")
 
-parsed_name = parse_name(name)
+# Keep asking for a name until the user enters one
+while not name:
+    name = input("What is your name?")
+    if not name:
+        print("You didn't enter a name!")
+
 # Call the `parse_name` function with the user's input `name` and store the cleaned result in `parsed_name`.
+parsed_name = parse_name(name)
 
-first_name = parsed_name.split()[0]
 # Split the cleaned name into words (using spaces as delimiters) and extract the first word (assumed to be the first name).
+first_name = parsed_name.split()[0]
 
-print(f"Hello, {first_name}!")
+say_hello(first_name)
 # Print a greeting message that includes the user's first name.
