@@ -28,7 +28,6 @@ def print_ascii_art():
     print("|           |")
     print("|   \___/   |")
     print(" \\_________/ ")
-    print("Hello world!!")
     reset_color()
 
 def set_color(color_code):
