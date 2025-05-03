@@ -23,7 +23,6 @@ months = [
 ]
 
 def main():
-    # Loop indefinitely until a valid date is entered.
     while True:
         # Prompt the user to enter a date.
         date_input = input("Enter a date (MM/DD/YYYY or Month DD, YYYY):")
@@ -55,7 +54,6 @@ def main():
                     break
         # Handle ValueError (if conversion to integer fails) and IndexError (if month is not found).
         except (ValueError, IndexError):
-            # Print an error message and prompt the user to try again.
             print("Invalid date format. Please try again.")
 
 main()
