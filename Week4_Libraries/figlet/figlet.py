@@ -1,10 +1,17 @@
 import sys
 import random
-from pyfiglet import Figlet
+import pyfiglet
 import os
 
+def welcome_message():
+    print("Welcome to the Figlet program!")
+    print("This program allows you to display text in various fonts.")
+    print("You can choose a random font or specify a font using command-line arguments.")
+    print("To specify a font, use -f or --font followed by the font name.")
+    input("Press Enter to see the list of available fonts...")  # Pause
+
 def main():
-    figlet = Figlet()
+    figlet = pyfiglet.Figlet()
     input_text = input("Input text: ")
 
     if len(sys.argv) == 1:
@@ -23,18 +30,9 @@ def main():
     print(figlet.renderText(input_text))
 
 
-def print_available_fonts():
-    figlet = Figlet()
-    fonts = figlet.getFonts()
+def print_available_fonts():  
+    fonts = pyfiglet.Figlet().getFonts()
     print("Available fonts:", ", ".join(fonts))
-
-
-def welcome_message():
-    print("Welcome to the Figlet program!")
-    print("This program allows you to display text in various fonts.")
-    print("You can choose a random font or specify a font using command-line arguments.")
-    print("To specify a font, use -f or --font followed by the font name.")
-    input("Press Enter to see the list of available fonts...")  # Pause
 
 
 if __name__ == "__main__":
