@@ -1,21 +1,43 @@
-""" Expect zero or two command-line arguments:
-Zero if the user would like to output text in a random font.
-Two if the user would like to output text in a specific font,
-in which case the first of the two should be -f or --font,
-and the second of the two should be the name of the font.
-Prompts the user for a str of text.
-Outputs that text in the desired font.
-If the user provides two command-line arguments and 
-the first is not -f or --font or the second is not the name of a font, 
-the program should exit via sys.exit with an error message. """
-
+import sys
 import random
+from pyfiglet import Figlet
+import os
 
-from pyfiglet import Figlet # type: ignore
-figlet = Figlet()
+def main():
+    figlet = Figlet()
+    input_text = input("Input text: ")
+
+    if len(sys.argv) == 1:
+        figlet.setFont(font=random.choice(figlet.getFonts()))
+    elif len(sys.argv) == 3:
+        if sys.argv[1] in ["-f", "--font"]:
+            try:
+                figlet.setFont(font=sys.argv[2])
+            except pyfiglet.FontNotFound:
+                sys.exit(f"Error: Font '{sys.argv[2]}' not found.")
+        else:
+            sys.exit("Invalid argument. Use -f or --font to specify a font.")
+    else:
+        sys.exit("Invalid number of arguments. Use 0 or 2.")
+
+    print(figlet.renderText(input_text))
 
 
-input_text = input("Enter text:")
+def print_available_fonts():
+    figlet = Figlet()
+    fonts = figlet.getFonts()
+    print("Available fonts:", ", ".join(fonts))
 
-print(figlet.renderText(input_text))
 
+def welcome_message():
+    print("Welcome to the Figlet program!")
+    print("This program allows you to display text in various fonts.")
+    print("You can choose a random font or specify a font using command-line arguments.")
+    print("To specify a font, use -f or --font followed by the font name.")
+    input("Press Enter to see the list of available fonts...")  # Pause
+
+
+if __name__ == "__main__":
+    welcome_message()
+    print_available_fonts()
+    main()
